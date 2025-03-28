@@ -32,6 +32,7 @@ import Question from './components/Question';
 import Progress from './components/Progress';
 import Results from './components/Results';
 import { questions } from './data/questions';
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 const theme = createTheme({
   palette: {
@@ -46,11 +47,13 @@ const theme = createTheme({
 });
 
 function App() {
+  
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedAnswers, setSelectedAnswers] = useState([]);
   const [showResults, setShowResults] = useState(false);
   const [timeRemaining, setTimeRemaining] = useState(55 * 60); // 55 minutes in seconds
 
+  
   useEffect(() => {
     if (timeRemaining > 0 && !showResults) {
       const timer = setTimeout(() => setTimeRemaining(timeRemaining - 1), 1000);
@@ -120,6 +123,13 @@ function App() {
         )}
       </Container>
     </ThemeProvider>
+  );
+  // Add Speed Insights component
+   return (
+    <>
+      <SpeedInsights /> {/* Add this line */}
+      {/* Rest of your app */}
+    </>
   );
 }
 
